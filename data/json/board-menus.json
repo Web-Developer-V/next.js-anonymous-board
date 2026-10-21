@@ -1,0 +1,12 @@
+[
+  {
+    "id": "menu-1",
+    "name": "자유게시판",
+    "link": "/free-board"
+  },
+  {
+    "id": "menu-2",
+    "name": "질문게시판",
+    "link": "/qna-board"
+  }
+]
