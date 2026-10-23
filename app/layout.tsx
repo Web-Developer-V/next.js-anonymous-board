@@ -3,6 +3,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import Header from "@/components/header/header";
+import { Figtree } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
 
 const pretendard = localFont({
   src: "../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
@@ -18,10 +22,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ko" className={`${pretendard.variable} h-full antialiased`}>
+    <html lang="ko" className={cn("h-full", "antialiased", pretendard.variable, "font-sans", figtree.variable)}>
       <body className="min-h-full flex flex-col">
         <Header />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
