@@ -6,7 +6,7 @@ import Header from "@/components/header/header";
 import { Figtree } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
+const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
 const pretendard = localFont({
   src: "../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",

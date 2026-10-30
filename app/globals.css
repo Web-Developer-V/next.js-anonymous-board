@@ -1,3 +1,6 @@
+@import '../styles/_variables.scss';
+@import '../styles/_keyframe-animations.scss';
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -132,3 +135,60 @@ body {
     @apply font-sans;
   }
 }
+
+.tiptap-content {
+  overflow-wrap: anywhere;
+}
+
+.tiptap-content p {
+  margin: 0.5rem 0;
+}
+
+.tiptap-content p:first-child {
+  margin-top: 0;
+}
+
+.tiptap-content p:last-child {
+  margin-bottom: 0;
+}
+
+.tiptap-content h1,
+.tiptap-content h2,
+.tiptap-content h3,
+.tiptap-content h4 {
+  margin: 1rem 0 0.5rem;
+  font-weight: 700;
+}
+
+.tiptap-content h1 {
+  font-size: 1.875rem;
+}
+
+.tiptap-content h2 {
+  font-size: 1.5rem;
+}
+
+.tiptap-content h3 {
+  font-size: 1.25rem;
+}
+
+.tiptap-content ul,
+.tiptap-content ol {
+  padding-left: 1.5rem;
+}
+
+.tiptap-content ul {
+  list-style: disc;
+}
+
+.tiptap-content ol {
+  list-style: decimal;
+}
+
+.tiptap-content blockquote {
+  border-left: 3px solid #cbd5e1;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  color: #64748b;
+}
+

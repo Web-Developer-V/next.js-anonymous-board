@@ -3,6 +3,14 @@ export interface CreatePost {
   title: string;
   content: string;
   category: string;
+  password_hash: string;
+}
+
+export interface EditPost {
+  nickname: string;
+  title: string;
+  content: string;
+  category: string;
 }
 
 export interface Post extends Omit<CreatePost, "category"> {
@@ -14,6 +22,8 @@ export interface Post extends Omit<CreatePost, "category"> {
   number: number;
   views: number;
   likes: number;
+  liked_user_ids: [];
+  password_hash: string;
 }
 
 export type Posts = Post;
