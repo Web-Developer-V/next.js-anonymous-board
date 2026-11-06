@@ -6,6 +6,8 @@ import Header from "@/components/header/header";
 import { Figtree } from "next/font/google";
 import { cn } from "@/lib/utils";
 
+import CreateUserClient from "@/components/client/create-user-client";
+
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
 const pretendard = localFont({
@@ -23,7 +25,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className={cn("h-full", "antialiased", pretendard.variable, "font-sans", figtree.variable)}>
-      <body className="min-h-full flex flex-col">
+      <body suppressHydrationWarning className="min-h-full flex flex-col">
+        <CreateUserClient />
         <Header />
         <main>{children}</main>
       </body>

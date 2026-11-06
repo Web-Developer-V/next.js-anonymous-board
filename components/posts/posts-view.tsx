@@ -1,6 +1,5 @@
 import CommentForm from "@/components/form/comment-form";
-import CommentsList from "@/components/posts/comments-list";
-import CommentReplysList from "@/components/posts/comment-replys-list";
+import CommentsList from "@/components/comment/comments-list";
 
 import type { Post } from "@/types/posts";
 import PostsViewButtonArticle from "./posts-view-button-article";
@@ -27,19 +26,11 @@ export default function PostsView({ id, list, pathName, page, initialIsLiked }: 
 export async function CommentsArticle({ list }: { list: Post }) {
   return (
     <div className="p-7">
-      <div className="mt-5">
-        <h4 className="font-bold">
-          댓글 <span className="text-slate-400">2</span>
-        </h4>
-        {/* 댓글 리스트 */}
-        <CommentsList data={list}>
-          {/* 답글 리스트 */}
-          <CommentReplysList />
-        </CommentsList>
-      </div>
+      {/* 댓글 리스트 */}
+      <CommentsList list={list} />
 
       {/* 댓글 폼 */}
-      <CommentForm />
+      <CommentForm list={list} />
     </div>
   );
 }

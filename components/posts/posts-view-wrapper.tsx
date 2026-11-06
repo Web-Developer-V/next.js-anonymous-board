@@ -1,4 +1,4 @@
-import { increamentPostViews, selectPost } from "@/app/actions/posts-action";
+import { selectPost } from "@/app/actions/posts-action";
 import PostsView from "./posts-view";
 import { getCurrentUser } from "@/app/actions/user-action";
 
@@ -9,7 +9,6 @@ interface Props {
 }
 
 export default async function PostsViewWrapper({ id, pathName, page }: Props) {
-  await increamentPostViews(id);
   const post = await selectPost(id);
 
   if (!post) {

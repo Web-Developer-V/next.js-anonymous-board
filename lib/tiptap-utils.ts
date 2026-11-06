@@ -6,7 +6,7 @@ import { cellAround, CellSelection } from "@tiptap/pm/tables";
 import { findParentNodeClosestToPos, type Editor, type NodeWithPos } from "@tiptap/react";
 
 import * as tus from "tus-js-client";
-import { supabase } from "./supabase/client";
+import { supabase } from "./supabase/browser";
 
 export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
@@ -363,22 +363,12 @@ export const handleImageUpload = async (file: File, onProgress?: (event: { progr
   const extension = file.name.split(".").pop() || "jpg";
   const filePath = `${crypto.randomUUID()}.${extension}`;
 
-  let {
+  const {
     data: { session },
   } = await supabase.auth.getSession();
 
   if (!session) {
-    const { data, error } = await supabase.auth.signInAnonymously();
-
-    if (error) {
-      throw new Error(`익명 로그인에 실패했습니다: ${error.message}`);
-    }
-
-    session = data.session;
-  }
-
-  if (!session) {
-    throw new Error("익명 로그인 세션을 만들 수 없습니다.");
+    throw new Error("익명 사용자 세션이 없습니다.");
   }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;

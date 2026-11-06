@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { format, isToday } from "date-fns";
 import DOMPurify from "isomorphic-dompurify";
 
 import PostLikesButton from "../button/post-likes-button";
 
-import { postLikes } from "@/app/actions/posts-action";
+import { increamentPostViews, postLikes } from "@/app/actions/posts-action";
 
 import type { Post } from "@/types/posts";
 
@@ -19,12 +19,21 @@ export default function PostViewField({ list, initialIsLiked }: Props) {
   const [likes, setLikes] = useState(list.likes);
   const [isLiked, setIsLiked] = useState(initialIsLiked);
 
+  const hasCountedView = useRef(false);
+
   const handleLikes = async () => {
     const nextIsLiked = await postLikes(list.id);
     setIsLiked(nextIsLiked);
 
     setLikes((current) => (nextIsLiked ? current + 1 : Math.max(0, current - 1)));
   };
+
+  useEffect(() => {
+    if (hasCountedView.current) return;
+
+    hasCountedView.current = true;
+    increamentPostViews(list.id);
+  }, [list.id]);
 
   const date = new Date(list.created_at);
   const convertedDate = isToday(date) ? format(date, "HH:mm:ss") : format(date, "yyyy-MM-dd");

@@ -5,7 +5,7 @@ import type { CreatePost, EditPost } from "@/types/posts";
 import { redirect } from "next/navigation";
 import argon2 from "argon2";
 
-type passwordValidateResult = { ok: boolean; reason: "empty" | "mismatch" | undefined };
+import type { passwordValidateResult } from "@/types/common";
 
 export async function selectPost(id: string) {
   const supabase = await createClient();
@@ -34,22 +34,12 @@ export async function selectPosts() {
 export async function createPosts(post: CreatePost) {
   const supabase = await createClient();
 
-  let {
+  const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (!user) {
-    const { data, error } = await supabase.auth.signInAnonymously();
-
-    if (error) {
-      throw new Error(`${error.message}`);
-    }
-
-    user = data.user;
-  }
-
-  if (!user) {
-    throw new Error("익명 사용자 생성에 실패했습니다.");
+    throw new Error("익명 사용자 세션이 없습니다. 페이지를 새로고침해주세요.");
   }
 
   const passwordHash = await argon2.hash(post.password_hash, {

@@ -14,6 +14,12 @@ export default async function PostsViewButtonArticle({ id, list, pathName, page 
   const user = await getCurrentUser();
   const isAuthor = Boolean(user && list.user_id && user.id === list.user_id);
 
+  console.log({
+    currentUserId: user?.id,
+    postUserId: list.user_id,
+    isAuthor,
+  });
+
   return (
     <div className="flex justify-between gap-4 p-7 mt-8 border-y border-gray-200">
       <ListBackButton pathName={pathName} page={page} />

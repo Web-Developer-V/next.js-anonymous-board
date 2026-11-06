@@ -15,7 +15,7 @@ export default async function PostsListRow({ posts, slug, currentPage }: Props) 
     <>
       {posts.map((list) => {
         const date = new Date(list.created_at);
-        const convertedDate = isToday(date) ? format(date, "HH:mm") : format(date, "yyyy.MM.dd");
+        const createdDate = isToday(date) ? format(date, "HH:mm") : format(date, "yyyy.MM.dd");
 
         return (
           <tr key={list.id} className="transition-colors hover:bg-[#f8f9fb]">
@@ -26,7 +26,7 @@ export default async function PostsListRow({ posts, slug, currentPage }: Props) 
               </Link>
             </td>
             <td className={tableCotentCss}>{list.nickname}</td>
-            <td className={tableCotentCss}>{convertedDate}</td>
+            <td className={tableCotentCss}>{createdDate}</td>
             <td className={tableCotentCss}>{list.views}</td>
             <td className={tableCotentCss}>{list.likes}</td>
           </tr>
